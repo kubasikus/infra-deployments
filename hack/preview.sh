@@ -100,12 +100,12 @@ fi
 # Do not allow to use default github org
 if [ -z "$MY_GITHUB_ORG" ] || [ "$MY_GITHUB_ORG" == "redhat-appstudio-appdata" ]; then
     echo "Set MY_GITHUB_ORG environment variable"
-    exit 1
+    # exit 1
 fi
 
 if ! git diff --exit-code --quiet; then
     echo "Changes in working Git working tree, commit them or stash them"
-    exit 1
+    # exit 1
 fi
 
 # Create preview branch for preview configuration

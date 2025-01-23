@@ -68,6 +68,7 @@ EOF
 }
 
 create_db_cert_secret_and_configmap() {
+    which openssl
     echo "Creating Postgres TLS certs" >&2
     if kubectl get secret -n tekton-results postgresql-tls &>/dev/null; then
         echo "Postgres DB cert secret already exists, skipping creation"
@@ -80,7 +81,7 @@ create_db_cert_secret_and_configmap() {
         -subj "/CN=cluster.local" \
         > /dev/null
     chmod og-rwx ".tmp/tekton-results/ca.key"
-    openssl x509 -req -days 9999 -text -extensions v3_ca \
+    openssl x509 -req -days 9999 -text \
         -signkey ".tmp/tekton-results/ca.key" \
         -in ".tmp/tekton-results/ca.csr" \
         -extfile "/etc/ssl/openssl.cnf" \
