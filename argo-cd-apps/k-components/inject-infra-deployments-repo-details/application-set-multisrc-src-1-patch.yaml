@@ -4,4 +4,4 @@
   value: https://github.com/kubasikus/infra-deployments.git
 - op: replace
   path: /spec/template/spec/sources/1/targetRevision
-  value: preview-main
+  value: preview-preview-main
